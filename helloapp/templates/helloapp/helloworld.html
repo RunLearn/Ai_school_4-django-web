@@ -7,11 +7,15 @@
 
         <form action="/hello/helloman/" method="POST">
             {% csrf_token %}
-            <input type = "submit" class="btn btn-primary">
+            <input type = "text"
+                    name = "input_text">
+            <input type = "submit"
+                   value="SEND"
+                   class="btn btn-primary">
 
         </form>
 
-        <h3>{{ text }}</h3>
+        <h3>{{ new_model.text }}</h3>
     </div>
 
 
