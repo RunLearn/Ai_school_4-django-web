@@ -4,6 +4,13 @@
 
     <div style = "margin: 2rem; text-align: center;">
         <h1>HTTP METHOD</h1>
+
+        <form action="/hello/helloman/" method="POST">
+            {% csrf_token %}
+            <input type = "submit" class="btn btn-primary">
+
+        </form>
+
         <h3>{{ text }}</h3>
     </div>
 
