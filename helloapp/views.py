@@ -1,5 +1,6 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 
 from helloapp.models import NewModel
 
@@ -13,9 +14,8 @@ def hello(request):
         new_model.text = temp
         new_model.save()
 
-        data_list = NewModel.objects.all()
-        return render(request, 'helloapp/helloworld.html',
-                      context={'data_list': data_list })
+        return HttpResponseRedirect(reverse('helloapp:hello_man'))
+
     else:
         data_list = NewModel.objects.all()
         return render(request, 'helloapp/helloworld.html',
