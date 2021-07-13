@@ -15,11 +15,8 @@ def hello(request):
 
         data_list = NewModel.objects.all()
         return render(request, 'helloapp/helloworld.html',
-                      context={'new_model': new_model })
+                      context={'data_list': data_list })
     else:
-        return render(request, 'helloapp/helloworld.html',
-                      context={'text': 'GET METHOD!'})
-
         data_list = NewModel.objects.all()
         return render(request, 'helloapp/helloworld.html',
-                      context={'new_model': new_model})
+                      context={'data_list': data_list})
