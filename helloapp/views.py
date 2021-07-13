@@ -13,9 +13,13 @@ def hello(request):
         new_model.text = temp
         new_model.save()
 
-
+        data_list = NewModel.objects.all()
         return render(request, 'helloapp/helloworld.html',
                       context={'new_model': new_model })
     else:
         return render(request, 'helloapp/helloworld.html',
                       context={'text': 'GET METHOD!'})
+
+        data_list = NewModel.objects.all()
+        return render(request, 'helloapp/helloworld.html',
+                      context={'new_model': new_model})
