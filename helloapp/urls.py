@@ -1,7 +1,7 @@
 from django.contrib.auth.views import LoginView, LogoutView
 from django.urls import path
 
-from helloapp.views import hello, AccountCreateView
+from helloapp.views import hello, AccountCreateView, AccountDetailView
 
 app_name = 'helloapp'
 
@@ -14,5 +14,8 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name='helloapp/logout.html'),
          name='logout'),
 
-    path('create/', AccountCreateView.as_view(), name = 'create')
+    path('create/', AccountCreateView.as_view(), name = 'create'),
+
+    path('detail/<int:pk>', AccountDetailView.as_view(), name = 'detail'),
+
 ]

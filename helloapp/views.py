@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView
+from django.views.generic import CreateView, DetailView
 
 from helloapp.models import NewModel
 
@@ -31,4 +31,7 @@ class AccountCreateView(CreateView):
     success_url = reverse_lazy('helloapp:hello_man')
     template_name = 'helloapp/create.html'
 
-
+class AccountDetailView(DetailView):
+    model = User
+    context_object_name = 'target_user'
+    template_name = 'helloapp/detail.html'
