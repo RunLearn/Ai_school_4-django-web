@@ -9,6 +9,9 @@
         <div>
             <h4>{{ target_user.date_joined }}</h4>
         </div>
+
+        {%  if user == target_user %}
+
         <div>
             <a href="{% url 'helloapp:update' pk=target_user.pk %}">
                 Update Info
@@ -19,6 +22,8 @@
                 Quit
             </a>
         </div>
+
+        {% endif %}
     </div>
 
 {% endblock %}
