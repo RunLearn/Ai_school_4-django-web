@@ -65,14 +65,14 @@ class AccountDeleteView(DeleteView):
     template_name = 'helloapp/delete.html'
 
     def get(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
+        if request.user.is_authenticated and self.get_object() == request.user:
             return super().get(request, *args, **kwargs)
         else:
-            return HttpResponseRedirect(reverse('helloapp:login'))
+            return HttpResponseForbidden()
 
     def post(self, request, *args, **kwargs):
-        if request.user.is_authenticated:
+        if request.user.is_authenticated and self.get_object() == request.user:
             return super().post(request, *args, **kwargs)
         else:
-            return HttpResponseRedirect(reverse('helloapp:login'))
+            return HttpResponseForbidden()
 
