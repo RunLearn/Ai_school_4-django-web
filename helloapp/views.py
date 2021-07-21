@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseForbidden
 from django.shortcuts import render
 from django.urls import reverse, reverse_lazy
 from django.views.generic import CreateView, DetailView, UpdateView, DeleteView
@@ -46,15 +46,17 @@ class AccountUpdateView(UpdateView):
     success_url = reverse_lazy('helloapp:hello_man')
     template_name = 'helloapp/update.html'
 
-    def get(self, request,*args,**kwargs):
-        if request.user.is_authenticated:
-            return super().get(request,*args,**kwargs)
-        else: return HttpResponseRedirect(reverse('helloapp:login'))
+    def get(self, request, *args, **kwargs):
+        if request.user.is_authenticated and self.get_object() == request.user:
+            return super().get(request, *args, **kwargs)
+        else:
+            return HttpResponseForbidden()
 
-    def post(self, request,*args,**kwargs):
-        if request.user.is_authenticated:
-            return super().post(request,*args,**kwargs)
-        else: return HttpResponseRedirect(reverse('helloapp:login'))
+    def post(self, request, *args, **kwargs):
+        if request.user.is_authenticated and self.get_object() == request.user:
+            return super().post(request, *args, **kwargs)
+        else:
+            return HttpResponseForbidden()
 
 class AccountDeleteView(DeleteView):
     model = User
