@@ -25,8 +25,6 @@ def hello(request):
         return render(request, 'helloapp/helloworld.html',
                       context={'data_list': data_list})
 
-
-
 class AccountCreateView(CreateView):
     model = User
     form_class = UserCreationForm

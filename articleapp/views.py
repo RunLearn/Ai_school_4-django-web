@@ -9,8 +9,8 @@ from articleapp.forms import ArticleCreationForm
 from articleapp.models import Article
 
 
-@method_decorator(login_required, 'get')
-@method_decorator(login_required, 'post')
+@method_decorator(login_required(login_url= reverse_lazy('helloapp:login')), 'get')
+@method_decorator(login_required(login_url= reverse_lazy('helloapp:login')), 'post')
 class ArticleCreateView(CreateView):
     model = Article
     form_class = ArticleCreationForm
