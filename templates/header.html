@@ -4,7 +4,9 @@
         <h1>LearnRun</h1>
     </div>
     <div class = "learnrun_header_button">
-        <span>nav1</span>
+        <a href="{% url 'articleapp:list' %}">
+            Articles
+        </a>
         <span>nav2</span>
         {% if not user.is_authenticated %}
         <span>
