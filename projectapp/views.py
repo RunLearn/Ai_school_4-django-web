@@ -10,6 +10,6 @@ from projectapp.models import Project
 
 class ProjectCreateView(CreateView):
     model = Project
-    form = ProjectCreationForm
+    form_class = ProjectCreationForm
     success_url = reverse_lazy('articleapp:list')
     template_name = 'projectapp/create.html'
