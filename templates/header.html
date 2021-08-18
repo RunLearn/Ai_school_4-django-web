@@ -7,7 +7,10 @@
         <a href="{% url 'articleapp:list' %}">
             Articles
         </a>
-        <span>nav2</span>
+        <a href="{% url 'projectapp:list' %}">
+            Projects
+        </a>
+
         {% if not user.is_authenticated %}
         <span>
             <a href="{% url 'helloapp:login' %}">
@@ -19,6 +22,7 @@
                 SignUp
             </a>
         </span>
+
         {% else %}
         <span>
             <a href="{% url 'helloapp:detail' pk=user.pk %}">
@@ -31,6 +35,7 @@
             </a>
         </span>
         {% endif %}
+
     </div>
 
 </div>
