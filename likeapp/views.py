@@ -16,13 +16,10 @@ from likeapp.models import LikeRecord
 
 
 @transaction.atomic
-def db_trantransaction(user,article):
-
-
+def db_transaction(user,article):
 
     like_record = LikeRecord.objects.filter(user=user,
                                             article=article)
-
     if like_record.exists():
         raise ValidationError('like already exists')
     else:
@@ -44,7 +41,7 @@ class LikeArticleView(RedirectView):
         article = Article.objects.get(pk=kwargs['article_pk'])
 
         try:
-            db_trantransaction(user,article)
+            db_transaction(user,article)
             #좋아요 반영 O
             messages.add_message(request, messages.SUCCESS, '좋아요 💕')
         except ValidationError:
