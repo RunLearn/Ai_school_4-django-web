@@ -14,13 +14,24 @@ services:
       - LearnRun_media:/data/media/
 
   django:
-    image: project:2
+    image: project:4
     networks:
       - learnrun_network
     volumes:
       - LearnRun_static:/home/Ai_school_4-django-web/staticfiles
       - LearnRun_media:/home/Ai_school_4-django-web/media/
 
+  mariadb:
+    image: mariadb:10.5
+    networks:
+      - learnrun_network
+    volumes:
+      - LearnRun_mariadb:/var/lib/mysql
+    environment:
+      MARIADB_ROOT_PASSWORD: password1234
+      MARIADB_DATABASE: django
+      MARIADB_USER: django
+      MARIADB_PASSWORD: password1234
 
 
 networks:
@@ -29,3 +40,4 @@ networks:
 volumes:
   LearnRun_static:
   LearnRun_media:
+  LearnRun_mariadb:
