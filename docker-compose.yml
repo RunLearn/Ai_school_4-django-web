@@ -14,7 +14,7 @@ services:
       - LearnRun_media:/data/media/
 
   django:
-    image: project:4
+    image: project:5
     networks:
       - learnrun_network
     volumes:
