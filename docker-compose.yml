@@ -22,6 +22,8 @@ services:
       - LearnRun_media:/home/Ai_school_4-django-web/media/
     secrets:
       - DJANGO_SECRET_KEY
+      - MARIADB_USER
+      - MARIADB_PASSWORD
 
   mariadb:
     image: mariadb:10.5
@@ -29,6 +31,11 @@ services:
       - learnrun_network
     volumes:
       - LearnRun_mariadb:/var/lib/mysql
+    secrets:
+      - MARIADB_ROOT_PASSWORD
+      - MARIADB_USER
+      - MARIADB_PASSWORD
+      -
     environment:
       MARIADB_ROOT_PASSWORD: password1234
       MARIADB_DATABASE: django
