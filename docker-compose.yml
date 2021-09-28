@@ -20,6 +20,8 @@ services:
     volumes:
       - LearnRun_static:/home/Ai_school_4-django-web/staticfiles
       - LearnRun_media:/home/Ai_school_4-django-web/media/
+    secrets:
+      - DJANGO_SECRET_KEY
 
   mariadb:
     image: mariadb:10.5
@@ -41,3 +43,7 @@ volumes:
   LearnRun_static:
   LearnRun_media:
   LearnRun_mariadb:
+
+secrets:
+  DJANGO_SECRET_KEY:
+    external: true
